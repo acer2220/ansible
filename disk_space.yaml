@@ -1,5 +1,7 @@
 ---
 - hosts: Pihole
+
+  become: true
   tasks:
     - name: Get human-readable disk space information
       shell: df -h
