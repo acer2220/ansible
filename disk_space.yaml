@@ -26,17 +26,3 @@
     - name: Debug /run tmpfs size
       debug:
         var: run_tmpfs_size_mb
-
-    - name: Send update completion notification
-      mail:
-        host: smtp.gmail.com
-        port: 587
-        username: workgcannon@gmail.com
-        password: "xscj expv qrzi zbay"
-        to: workgcannon@gmail.com
-        subject: "Disk Space Usage"
-        body: '{"content": "Disk space on {{ inventory_hostname }} is above 10%!"}'
-      when: disk_usage.stdout[:-1]|int > 10
-      vars:
-        ansible_python_interpreter: /usr/bin/python3
-      delegate_to: localhost
