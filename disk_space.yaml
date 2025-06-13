@@ -37,7 +37,6 @@
         subject: "Disk Space Usage"
         body: '{"content": "Disk space on {{ inventory_hostname }} is above 10%!"}'
       when: disk_usage.stdout[:-1]|int > 10
-      no_log: true
       vars:
         ansible_python_interpreter: /usr/bin/python3
       delegate_to: localhost
