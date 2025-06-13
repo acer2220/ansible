@@ -1,5 +1,5 @@
 ---
-- hosts: Pihole
+- hosts: all
 
   become: true
   tasks:
