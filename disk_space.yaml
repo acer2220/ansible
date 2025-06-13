@@ -1,0 +1,4 @@
+- name: Check available disk space
+  shell: df -h /
+  register: disk_space
+  changed_when: false
