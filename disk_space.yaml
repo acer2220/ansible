@@ -5,11 +5,11 @@
   tasks:
     - name: Get human-readable disk space information
       shell: df -h
-      register: df_usage
+      register: df_result
 
     - name: Check disk space available
       shell: df -h / | awk 'NR==2 {print $5}'
-      register: disk_usage
+      register: disk_result
 
     - name: Debug the disk space output
       debug:
