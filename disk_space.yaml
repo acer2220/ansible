@@ -1,10 +1,24 @@
 ---
 - hosts: Pihole
-
-  become: true
-
   tasks:
-    - name: APT Package Updater
-      commands:
-        - df -h /
+    - name: Get human-readable disk space information
+      shell: df -h
+      register: df_result
+
+    - name: Debug the disk space output
+      debug:
+        msg: "Disk space information:\n{{ df_result.stdout }}"
+
+    - name: Get size of /run
+      shell: "df --block-size 1m /run --output=size | tail -1"
+      register: shell_df_result
+
+    - name: Set facts for /run tmpfs size
+      set_fact:
+        run_tmpfs_size_mb: "{{ shell_df_result.stdout | int }}"
+
+    - name: Debug /run tmpfs size
+      debug:
+        var: run_tmpfs_size_mb
+
 
