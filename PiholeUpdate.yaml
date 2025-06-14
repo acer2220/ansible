@@ -30,8 +30,6 @@
     - name: hostname
       command: hostname
       register: hostname_host
-      changed_when: false
-      failed_when: "'ANSWER SECTION' not in hostname_host.stdout"
         
     - name: Send update completion notification
       mail:
