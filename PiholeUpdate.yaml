@@ -39,7 +39,7 @@
         to: workgcannon@gmail.com
         subject: "Pi-hole update completed"
         body: "Updates have been applied to all Pi-hole instances.\n\n{{ pihole_update_result.stdout }}"
-        body: "'ANSWER SECTION' not in dns_test.stdout"
+        body: "dns_test.stdout"
         body: "pihole_status.stdout"
       when: pihole_update_result.changed
       no_log: true
