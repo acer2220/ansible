@@ -37,8 +37,8 @@
         username: workgcannon@gmail.com
         password: "xscj expv qrzi zbay"
         to: workgcannon@gmail.com
-        subject: "Pi-hole update completed. pihole_status.\n\n{{ pihole_status.stdout }}"
-        body: "Updates have been applied to all Pi-hole instances.\n\n{{ pihole_update_result.stdout }}  dns_test.\n\n{{ dns_test.stdout }}"
+        subject: "Pi-hole update completed."
+        body: "Updates have been applied to all Pi-hole instances.\n\n{{ pihole_update_result.stdout }}  pihole_status.\n\n{{ pihole_status.stdout }} dns_test.\n\n{{ dns_test.stdout }}"
       when: pihole_update_result.changed
       no_log: true
       vars:
