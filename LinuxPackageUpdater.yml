@@ -8,7 +8,7 @@
       apt:
         upgrade: yes
         update_cache: yes
-    - name: check if system reboot is required
+    - name: Check if a system reboot is required
       become: true
       stat:
         path: /var/run/reboot-required
@@ -25,7 +25,7 @@
         password: "xscj expv qrzi zbay"
         to: workgcannon@gmail.com
         subject: "\n\n{{ hostname_host.stdout }}"
-        body: "APT Package Updater \n\n{{ reboot_required.stdout }}"
+        body: "APT Package Updater. content": "Reboot required on {{ inventory_hostname }}"
       vars:
         ansible_python_interpreter: /usr/bin/python3
       delegate_to: localhost
