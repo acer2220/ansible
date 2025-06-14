@@ -23,8 +23,8 @@
         username: workgcannon@gmail.com
         password: "xscj expv qrzi zbay"
         to: workgcannon@gmail.com
-        subject: "Reboot Required on \n\n{{ hostname_host.stdout }}"
-        body: "Host \n\n{{ hostname_host.stdout }} requires a reboot. Please investigate."
+        subject: "Reboot Required on {{ ansible_hostname }}"
+        body: "Host {{ ansible_hostname }} requires a reboot. Please investigate."
       when: reboot_required_file.stat.exists
       delegate_to: localhost  # Send email from localhost
       run_once: true          # Only send one email per run
