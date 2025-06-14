@@ -8,11 +8,10 @@
       apt:
         upgrade: yes
         update_cache: yes
-    - name: Check if a system reboot is required
-      become: true
+    - name: Check for reboot required file
       stat:
         path: /var/run/reboot-required
-      register: reboot_required
+      register: reboot_required_file
     - name: hostname
       command: hostname
       register: hostname_host
@@ -24,8 +23,11 @@
         username: workgcannon@gmail.com
         password: "xscj expv qrzi zbay"
         to: workgcannon@gmail.com
-        subject: "\n\n{{ hostname_host.stdout }}"
-        body: '{"content": "Reboot required on {{ inventory_hostname }}"}'
+        subject: "Reboot Required on \n\n{{ hostname_host.stdout }}"
+        body: "Host \n\n{{ hostname_host.stdout }} requires a reboot. Please investigate."
+      when: reboot_required_file.stat.exists
+      delegate_to: localhost  # Send email from localhost
+      run_once: true          # Only send one email per run
       vars:
         ansible_python_interpreter: /usr/bin/python3
       delegate_to: localhost
