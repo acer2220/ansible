@@ -25,7 +25,7 @@
         password: "xscj expv qrzi zbay"
         to: workgcannon@gmail.com
         subject: "\n\n{{ hostname_host.stdout }}"
-        body: "APT Package Updater. Reboot required on {{ inventory_hostname }}"
+        body: "'{"content": "Reboot required on {{ inventory_hostname }}"}'"
       vars:
         ansible_python_interpreter: /usr/bin/python3
       delegate_to: localhost
