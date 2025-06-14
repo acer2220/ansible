@@ -8,3 +8,19 @@
       apt:
         upgrade: yes
         update_cache: yes
+    - name: hostname
+      command: hostname
+      register: hostname_host
+      
+    - name: Send update completion notification
+      mail:
+        host: smtp.gmail.com
+        port: 587
+        username: workgcannon@gmail.com
+        password: "xscj expv qrzi zbay"
+        to: workgcannon@gmail.com
+        subject: "\n\n{{ hostname_host.stdout }}"
+        body: "APT Package Updater"
+      vars:
+        ansible_python_interpreter: /usr/bin/python3
+      delegate_to: localhost
