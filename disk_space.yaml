@@ -40,8 +40,6 @@
         to: workgcannon@gmail.com
         subject: "\n\n{{ hostname_host.stdout }} Package Updater."
         body: "Updates have been applied to the host. Disk space information:\n{{ df_result.stdout }} \n\n{{ shell_df_result.stdout | int }}"
-      when: pihole_update_result.changed
-      no_log: true
       vars:
         ansible_python_interpreter: /usr/bin/python3
       delegate_to: localhost
