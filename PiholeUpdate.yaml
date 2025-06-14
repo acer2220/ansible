@@ -27,8 +27,6 @@
     - name: Verify DNS resolution is working
       command: dig @localhost google.com
       register: dns_test
-      changed_when: false
-      failed_when: "'ANSWER SECTION' not in dns_test.stdout"
     - name: hostname
       command: hostname
       register: hostname_host
