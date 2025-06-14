@@ -24,7 +24,6 @@
       command: pihole status
       register: pihole_status
       changed_when: false
-
     - name: Verify DNS resolution is working
       command: dig @localhost google.com
       register: dns_test
@@ -39,7 +38,7 @@
         password: "xscj expv qrzi zbay"
         to: workgcannon@gmail.com
         subject: "Pi-hole update completed"
-        body: "Updates have been applied to all Pi-hole instances.\n\n{{ pihole_update_result.stdout }}"
+        body: "Updates have been applied to all Pi-hole instances.\n\n{{ pihole_update_result.stdout }}", "'ANSWER SECTION' not in dns_test.stdout","pihole_status.stdout"
       when: pihole_update_result.changed
       no_log: true
       vars:
