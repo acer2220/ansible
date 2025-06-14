@@ -8,21 +8,28 @@
       apt:
         update_cache: yes
       changed_when: false
-
     - name: Upgrade all packages
       apt:
         upgrade: dist
         autoremove: yes
         autoclean: yes
-
     - name: Update Pi-hole
       command: pihole -up
       register: pihole_update_result
       changed_when: "'Everything is already up to date' not in pihole_update_result.stdout"
-
     - name: Display Pi-hole update results
       debug:
         var: pihole_update_result.stdout_lines
+    - name: Check Pi-hole status
+      command: pihole status
+      register: pihole_status
+      changed_when: false
+
+    - name: Verify DNS resolution is working
+      command: dig @localhost google.com
+      register: dns_test
+      changed_when: false
+      failed_when: "'ANSWER SECTION' not in dns_test.stdout"
         
     - name: Send update completion notification
       mail:
