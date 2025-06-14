@@ -39,7 +39,7 @@
         password: "xscj expv qrzi zbay"
         to: workgcannon@gmail.com
         subject: "\n\n{{ hostname_host.stdout }} Disk Space."
-        body: "Disk space information:\n{{ df_result.stdout }} \n\n{{ shell_df_result.stdout | int }}"
+        body: "Disk space information:\n{{ df_result.stdout }} tmpfs size MB.\n\n{{ shell_df_result.stdout | int }}"
       vars:
         ansible_python_interpreter: /usr/bin/python3
       delegate_to: localhost
